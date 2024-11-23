@@ -1,72 +1,61 @@
-# Project Name
-NAME = fdf
-
 # Compiler and Flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-# Library Paths and Files
-FT_PRINTF = ./ft_printf/libftprintf.a
-LIBFT = ./ft_printf/libft/libft.a
-MLX = ./MLX42/build/libmlx42.a
+# Directories
+SRC_DIR = .
+OBJ_DIR = obj
 
+# Source and Object Files
+SRCS = main.c fdf.c store_info.c get_next_line.c get_next_line_utils.c window.c draw.c
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+
+# Libraries
+LIBFT = ./ft_printf/libft/libft.a
+FT_PRINTF = ./ft_printf/libftprintf.a
+MLX_LIB = ./MLX42/build/libmlx42.a
+
+# MLX Flags
 ifeq ($(shell uname), Darwin)
-    MLX_FLAGS = -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
-else ifeq ($(shell uname), Linux)
-    MLX_FLAGS = -L./MLX42/build -lglfw -ldl -pthread -lm
+	MLX_FLAGS = -ldl -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+else
+	MLX_FLAGS = -L./MLX42/build -lglfw -ldl -pthread -lm
 endif
 
-# Directories
-SRCS_DIR = .
-INCLUDES = ./ft_printf ./MLX42/include/MLX42 ./ft_printf/libft
-OBJ_DIR = ./obj
+# Target
+NAME = fdf
 
-# Source Files
-SRCS = main.c fdf.c get_next_line.c
-OBJ = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+# Compilation Rules
+all: libft ft_printf mlx $(NAME)
 
+$(NAME): $(OBJS) $(LIBFT) $(FT_PRINTF) $(MLX_LIB)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(FT_PRINTF) $(MLX_LIB) $(MLX_FLAGS) -o $(NAME)
 
-# Default rule
-all: mlx_lib ft_lib printf_lib $(NAME)
-
-# Compile the main project
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ $(FT_PRINTF) $(LIBFT) $(MLX) $(MLX_FLAGS) -o $@
-
-# Object file compilation
-$(OBJ_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
-
-# Create the object directory
-$(OBJ_DIR):
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Build the MLX42 library
-mlx_lib:
-	cd MLX42 && cmake -B build && make -C build -j4
-
-# Build the ft_printf library
-printf_lib:
-	$(MAKE) -C ft_printf
-
-# Build the libft library (as part of ft_printf)
-ft_lib:
+# Build Libraries
+libft:
 	$(MAKE) -C ft_printf/libft
 
-# Clean object files and intermediate builds
+ft_printf:
+	$(MAKE) -C ft_printf
+
+mlx:
+	cd MLX42 && cmake -B build && make -C build -j4
+
 clean:
 	rm -rf $(OBJ_DIR)
-	$(MAKE) -C ft_printf clean
 	$(MAKE) -C ft_printf/libft clean
+	$(MAKE) -C ft_printf clean
 	cd MLX42 && rm -rf build
 
-# Full clean
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C ft_printf fclean
 	$(MAKE) -C ft_printf/libft fclean
+	$(MAKE) -C ft_printf fclean
 
-# Rebuild everything
 re: fclean all
 
-.PHONY: all clean fclean re mlx_lib ft_lib printf_lib
+.PHONY: all clean fclean re libft ft_printf mlx
