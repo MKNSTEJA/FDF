@@ -6,14 +6,14 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:26:34 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/23 18:14:07 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/24 14:28:30 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 void handle_keypress(struct mlx_key_data keydata, void *data);
-int	initialize_window(void)
+mlx_image_t	*initialize_window(t_dim *dim)
 {
 	void *mlx;
 
@@ -28,10 +28,10 @@ int	initialize_window(void)
     }
     mlx_image_to_window(mlx, image, 0, 0);
     mlx_key_hook(mlx, handle_keypress, mlx);
-    draw_grid(image);
+    draw_grid(image, dim);
 	mlx_loop(mlx);
     mlx_terminate(mlx);
-    return 0;
+    return image;
 }
 
 void handle_keypress(struct mlx_key_data keydata, void *data)

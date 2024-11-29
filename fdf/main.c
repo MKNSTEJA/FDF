@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:10:23 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/23 16:50:06 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:03:20 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	dim = setup_dim(graph_ad, argv[1]);
+	if(!dim)
+		return (-1);
 	while(i < dim->height)
 	{
 		j = 0;
@@ -39,13 +41,16 @@ int	main(int argc, char **argv)
 		i++;
 		ft_printf("\n");
 	}
-	(void)initialize_window();
+	mlx_image_t *image = initialize_window(dim);
+	(void) image;
 	i = 0;
 	while(i < dim->width)
 	{
-		free(dim->values[i]);
+		if(dim->values[i])
+			free(dim->values[i]);
 		i++;
 	}
-	free(dim);
+	if(dim)
+		free(dim);
 	close(graph_ad);
 }

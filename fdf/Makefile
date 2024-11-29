@@ -37,24 +37,24 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Build Libraries
 libft:
-	$(MAKE) -C ft_printf/libft
+	@$(MAKE) -C ft_printf/libft
 
 ft_printf:
-	$(MAKE) -C ft_printf
+	@$(MAKE) -C ft_printf
 
 mlx:
-	cd MLX42 && cmake -B build && make -C build -j4
+	@cd MLX42 && cmake -B build && make -C build -j4
 
 clean:
-	rm -rf $(OBJ_DIR)
-	$(MAKE) -C ft_printf/libft clean
-	$(MAKE) -C ft_printf clean
-	cd MLX42 && rm -rf build
+	@rm -rf $(OBJ_DIR)
+	@$(MAKE) -C ft_printf/libft clean
+	@$(MAKE) -C ft_printf clean
+	@cd MLX42 && rm -rf build
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C ft_printf/libft fclean
-	$(MAKE) -C ft_printf fclean
+	@rm -f $(NAME)
+	@$(MAKE) -C ft_printf/libft fclean
+	@$(MAKE) -C ft_printf fclean
 
 re: fclean all
 
