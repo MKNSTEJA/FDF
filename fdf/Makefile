@@ -7,7 +7,7 @@ SRC_DIR = .
 OBJ_DIR = obj
 
 # Source and Object Files
-SRCS = main.c fdf.c store_info.c get_next_line.c get_next_line_utils.c window.c draw.c
+SRCS = main.c fdf.c store_info.c get_next_line.c get_next_line_utils.c window.c draw.c algo.c
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 
 # Libraries

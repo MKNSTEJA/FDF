@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:47:19 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/23 06:28:36 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:55:51 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		count_columns(char *line);
 void	initialise_values(int fd, char *file, t_dim *dim);
 void	parse_line(char *line, t_dim *dim, int i);
+void	count_rows(char *line, t_dim *dim, int fd);
 
 t_dim	*setup_dim(int fd, char *file)
 {
@@ -23,30 +24,33 @@ t_dim	*setup_dim(int fd, char *file)
 	int		height;
 
 	dim = malloc(sizeof(t_dim));
-	if(!dim)
+	if (!dim)
 		return (NULL);
 	line = get_next_line(fd);
 	dim->height = 0;
 	height = 0;
 	dim->width = count_columns(line);
-	while (line)
-	{
-		dim->height++;
-		free(line);
-		line = get_next_line(fd);
-	}
+	count_rows(line, dim, fd);
 	dim->values = malloc(sizeof(int *) * dim->height);
 	if (!dim->values)
 		return (NULL);
 	while (height < dim->height)
 	{
 		dim->values[height] = malloc(sizeof(int) * dim->width);
-		if (!dim->values[height])
+		if (!dim->values[height++])
 			return (NULL);
-		height++;
 	}
-	// ft_printf("Dim width: %d, dim Height: %d\n", dim->height, dim->width);
 	return (initialise_values(fd, file, dim), dim);
+}
+
+void	count_rows(char *line, t_dim *dim, int fd)
+{
+	while (line)
+	{
+		dim->height++;
+		free(line);
+		line = get_next_line(fd);
+	}
 }
 
 int	count_columns(char *line)
@@ -101,9 +105,7 @@ void	parse_line(char *line, t_dim *dim, int i)
 		if ((line[k] >= '0' && line[k] <= '9') && (i < dim->height
 				&& j < dim->width))
 		{
-			// ft_printf("%d. No segfault here! i: %d, j: %d \n", k, i , j);
 			dim->values[i][j] = ft_atoi(&line[k]);
-			// ft_printf("%d. No segfault here! \n", k);
 			while (line[k] && line[k] != ' ' && line[k] != '\n')
 				k++;
 			j++;

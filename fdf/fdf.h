@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/24 14:29:11 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/29 20:58:10 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,39 @@
 # include "./ft_printf/ft_printf.h"
 # include "get_next_line.h"
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <math.h>
 
 # define WIDTH 1500
 # define HEIGHT 1000
 # define CELLS 40
+# define COLOR1 0xFFFFFFFF
+# define COLOR2 0x9F99FFFF
 
 typedef struct point
 {
-	int x;
-	int y;
-	int z;
-} t_point;
+	int	x;
+	int	y;
+	int	z;
+}		t_point;
 
-typedef struct mesh
+typedef struct algo
 {
-	int x_start;
-	int y_start;
-	int z;
-	int y_end;
-	int x_end;
-	int rows;
-	int columns;	
-	u_int32_t color;
-} t_mesh;
+	int	xacc;
+	int	yacc;
+	int	dx;
+	int	dy;
+	int	step;
+}		t_algo;
+
+typedef struct line
+{
+	int	x_start;
+	int	y_start;
+	int	x_end;
+	int	y_end;
+}		t_line;
 
 typedef struct dimensions
 {
@@ -51,10 +58,17 @@ typedef struct dimensions
 	int	**values;
 }		t_dim;
 
+typedef struct i_or_j
+{
+	int	i;
+	int	j;
+}		t_ij;
+
 t_dim	*setup_dim(int fd, char *file);
-mlx_image_t	*initialize_window(t_dim *dim);
-void	draw_line(mlx_image_t *image, int x0, int y0, int x1, int y1,
-		uint32_t color);
-void	draw_grid(mlx_image_t *image, t_dim *dim);
-void draw_fdf_on_mesh(mlx_image_t *image, t_dim *dim, t_mesh *mesh);
+void	initialize_window(t_dim *dim);
+void	draw_line(mlx_image_t *image, t_line pos, uint32_t color);
+void	dda_algorithm(t_line *pos, t_algo *dda);
+void	draw_fdf(mlx_image_t *image, t_dim *dim);
+int		find_step(int dx, int dy);
+void	isometric_projection(int *x, int *y, int z);
 #endif
