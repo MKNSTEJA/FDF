@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:10:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 19:14:01 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/30 08:11:42 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_fdf(mlx_image_t *image, t_dim *dim)
 		{
 			pos.y_start = (ij.i * CELLS);
 			pos.x_start = (ij.j * CELLS);
-			isometric_projection(&pos.x_start, &pos.y_start, 5
+			isometric_projection(&pos.x_start, &pos.y_start, 15
 				* dim->values[ij.i][ij.j]);
 			draw_horizontal(image, dim, ij, pos);
 			draw_vertical(image, dim, ij, pos);
@@ -45,7 +45,7 @@ void	draw_horizontal(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 	{
 		pos.x_end = ((ij.j + 1) * CELLS);
 		pos.y_end = (ij.i * CELLS);
-		isometric_projection(&pos.x_end, &pos.y_end, 5 * dim->values[ij.i][ij.j
+		isometric_projection(&pos.x_end, &pos.y_end, 15 * dim->values[ij.i][ij.j
 			+ 1]);
 		if (dim->values[ij.i][ij.j + 1] || dim->values[ij.i][ij.j])
 			draw_line(image, pos, COLOR2);
@@ -60,7 +60,7 @@ void	draw_vertical(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 	{
 		pos.x_end = (ij.j * CELLS);
 		pos.y_end = ((ij.i + 1) * CELLS);
-		isometric_projection(&pos.x_end, &pos.y_end, 5 * dim->values[ij.i
+		isometric_projection(&pos.x_end, &pos.y_end, 15 * dim->values[ij.i
 			+ 1][ij.j]);
 		if (dim->values[ij.i + 1][ij.j] || dim->values[ij.i][ij.j])
 			draw_line(image, pos, COLOR2);

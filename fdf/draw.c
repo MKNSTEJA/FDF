@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:23:21 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 17:54:33 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/30 08:28:23 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	draw_fdf(mlx_image_t *image, t_dim *dim);
 void	draw_pixel(mlx_image_t *image, uint32_t x, uint32_t y, uint32_t color)
 {
 	if ((x >= 0 && x < image->width) && (y >= 0 && y < image->height))
+	{
 		mlx_put_pixel(image, x, y, color);
+	}
 }
 
-void	draw_line(mlx_image_t *image, t_line pos,
-		uint32_t color)
+void	draw_line(mlx_image_t *image, t_line pos, uint32_t color)
 {
 	t_algo	dda;
 
@@ -58,3 +59,12 @@ void	isometric_projection(int *x, int *y, int z)
 	*x += offset_x;
 	*y += offset_y / 2;
 }
+
+// mlx_put_pixel(image, x+1, y, color);
+// mlx_put_pixel(image, x, y+1, color);
+// mlx_put_pixel(image, x-1, y, color);
+// mlx_put_pixel(image, x, y-1, color);
+// mlx_put_pixel(image, x+1, y-1, color);
+// mlx_put_pixel(image, x+1, y+1, color);
+// mlx_put_pixel(image, x-1, y+1, color);
+// mlx_put_pixel(image, x-1, y-1, color);

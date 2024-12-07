@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 20:58:10 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/30 08:28:46 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define WIDTH 1500
 # define HEIGHT 1000
 # define CELLS 40
-# define COLOR1 0xFFFFFFFF
-# define COLOR2 0x9F99FFFF
+# define COLOR1 0XFFFFFFFF
+# define COLOR2 0xFF7619FF
 
 typedef struct point
 {

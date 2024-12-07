@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:26:34 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 19:07:15 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/11/30 07:56:22 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	initialize_window(t_dim *dim)
 		fprintf(stderr, "Error: image is NULL\n");
 		exit(-1);
 	}
+	ft_memset(image->pixels, 0, image->width * image->height
+		* sizeof(int32_t));
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_key_hook(mlx, handle_keypress, mlx);
 	draw_fdf(image, dim);
