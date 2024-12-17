@@ -6,13 +6,13 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 17:23:21 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/30 08:28:23 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:04:56 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	isometric_projection(int *x, int *y, int z);
+void	isometric_projection(int *x, int *y, int z, t_dim *dim);
 void	draw_fdf(mlx_image_t *image, t_dim *dim);
 
 void	draw_pixel(mlx_image_t *image, uint32_t x, uint32_t y, uint32_t color)
@@ -43,21 +43,23 @@ void	draw_line(mlx_image_t *image, t_line pos, uint32_t color)
 	}
 }
 
-void	isometric_projection(int *x, int *y, int z)
+void	isometric_projection(int *x, int *y, int z, t_dim *dim)
 {
 	int	pre_x;
 	int	pre_y;
+	int z_height;
 	int	offset_x;
 	int	offset_y;
 
-	offset_x = (WIDTH) / 2;
-	offset_y = (HEIGHT) / 2;
+	offset_x = (WIDTH - dim->width) / 2;
+	offset_y = (HEIGHT - dim->height) / 2;
+	z_height = 3;
 	pre_x = *x;
 	pre_y = *y;
 	*x = ((pre_x - pre_y) * cos(M_PI / 5));
-	*y = ((pre_x + pre_y) * sin(M_PI / 5)) - z;
-	*x += offset_x;
-	*y += offset_y / 2;
+	*y = ((pre_x + pre_y) * sin(M_PI / 5)) - (z_height * z);
+	*x += offset_x - 100;
+	*y += offset_y/2 - 50;
 }
 
 // mlx_put_pixel(image, x+1, y, color);

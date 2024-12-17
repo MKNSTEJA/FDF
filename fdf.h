@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/30 08:28:46 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/17 22:02:14 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,18 @@
 
 # define WIDTH 1500
 # define HEIGHT 1000
-# define CELLS 40
+# define CELLS 35
 # define COLOR1 0XFFFFFFFF
 # define COLOR2 0xFF7619FF
 
-typedef struct point
+typedef struct s_point
 {
 	int	x;
 	int	y;
 	int	z;
 }		t_point;
 
-typedef struct algo
+typedef struct s_algo
 {
 	int	xacc;
 	int	yacc;
@@ -43,7 +43,7 @@ typedef struct algo
 	int	step;
 }		t_algo;
 
-typedef struct line
+typedef struct s_line
 {
 	int	x_start;
 	int	y_start;
@@ -51,14 +51,14 @@ typedef struct line
 	int	y_end;
 }		t_line;
 
-typedef struct dimensions
+typedef struct s_dimensions
 {
 	int	width;
 	int	height;
 	int	**values;
 }		t_dim;
 
-typedef struct i_or_j
+typedef struct s_i_or_j
 {
 	int	i;
 	int	j;
@@ -70,5 +70,5 @@ void	draw_line(mlx_image_t *image, t_line pos, uint32_t color);
 void	dda_algorithm(t_line *pos, t_algo *dda);
 void	draw_fdf(mlx_image_t *image, t_dim *dim);
 int		find_step(int dx, int dy);
-void	isometric_projection(int *x, int *y, int z);
+void	isometric_projection(int *x, int *y, int z, t_dim *dim);
 #endif
