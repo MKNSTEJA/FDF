@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/18 18:16:02 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:55:51 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_dimensions
 	int			width;
 	int			height;
 	int			**values;
+	uint32_t	**g_color;
 }				t_dim;
 
 typedef struct s_i_or_j
@@ -82,4 +83,6 @@ int				find_step(int dx, int dy);
 void			isometric_projection(int *x, int *y, int z, t_dim *dim);
 void			draw_pixel(mlx_image_t *image, uint32_t x, uint32_t y,
 					uint32_t color);
+uint32_t		ft_atoi_base(const char *str);
+
 #endif

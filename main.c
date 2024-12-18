@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:10:23 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 20:46:16 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/18 19:37:20 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,17 @@ int	main(int argc, char **argv)
 	dim = setup_dim(graph_ad, argv[1]);
 	if (!dim)
 		return (-1);
-	while (i < dim->height)
-	{
-		j = 0;
-		while (j < dim->width)
-		{
-			ft_printf("%d ", dim->values[i][j]);
-			j++;
-		}
-		i++;
-		ft_printf("\n");
-	}
+	// while (i < dim->height)
+	// {
+	// 	j = 0;
+	// 	while (j < dim->width)
+	// 	{
+	// 		ft_printf("%d ", dim->values[i][j]);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// 	ft_printf("\n");
+	// }
 	initialize_window(dim);
 	free_all(dim);
 	close(graph_ad);

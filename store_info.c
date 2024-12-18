@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:47:19 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 18:55:51 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:48:50 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ void	parse_line(char *line, t_dim *dim, int i)
 				&& j < dim->width))
 		{
 			dim->values[i][j] = ft_atoi(&line[k]);
+			if(line[k+1] == ',')
+				dim->g_color[i][j] = ft_atoi_base(&line[k+2]);
+			else
+				dim->g_color[i][j] = 0;
 			while (line[k] && line[k] != ' ' && line[k] != '\n')
 				k++;
 			j++;

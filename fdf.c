@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:10:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/18 18:20:22 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/18 21:46:38 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ void	draw_horizontal(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 		pos.z_end = dim->values[ij.i][ij.j + 1];
 		isometric_projection(&pos.x_end, &pos.y_end, pos.z_end, dim);
 		if (dim->values[ij.i][ij.j + 1] || dim->values[ij.i][ij.j])
-			draw_line(image, &pos, COLOR2);
+		{
+			if(dim->g_color[ij.i][ij.j + 1] == 0 || dim->g_color[ij.i][ij.j] == 0)
+				draw_line(image, &pos, COLOR2);
+			else
+				draw_line(image, &pos, dim->g_color[ij.i][ij.j]);	
+		}
 		else
 			draw_line(image, &pos, COLOR1);
 	}
@@ -63,7 +68,12 @@ void	draw_vertical(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 		pos.z_end = dim->values[ij.i + 1][ij.j];
 		isometric_projection(&pos.x_end, &pos.y_end, pos.z_end, dim);
 		if (dim->values[ij.i + 1][ij.j] || dim->values[ij.i][ij.j])
-			draw_line(image, &pos, COLOR2);
+		{
+			if(dim->g_color[ij.i + 1][ij.j] == 0 || dim->g_color[ij.i][ij.j] == 0)
+				draw_line(image, &pos, COLOR2);
+			else
+				draw_line(image, &pos, dim->g_color[ij.i][ij.j]);
+		}
 		else
 			draw_line(image, &pos, COLOR1);
 	}
