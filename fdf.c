@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:10:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/17 21:52:49 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/18 18:20:22 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	draw_fdf(mlx_image_t *image, t_dim *dim)
 		{
 			pos.y_start = (ij.i * CELLS);
 			pos.x_start = (ij.j * CELLS);
-			isometric_projection(&pos.x_start, &pos.y_start,
-				dim->values[ij.i][ij.j], dim);
+			pos.z_start = dim->values[ij.i][ij.j];
+			isometric_projection(&pos.x_start, &pos.y_start, pos.z_start, dim);
 			draw_horizontal(image, dim, ij, pos);
 			draw_vertical(image, dim, ij, pos);
 			ij.j++;
@@ -45,12 +45,12 @@ void	draw_horizontal(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 	{
 		pos.x_end = ((ij.j + 1) * CELLS);
 		pos.y_end = (ij.i * CELLS);
-		isometric_projection(&pos.x_end, &pos.y_end, dim->values[ij.i][ij.j
-			+ 1], dim);
+		pos.z_end = dim->values[ij.i][ij.j + 1];
+		isometric_projection(&pos.x_end, &pos.y_end, pos.z_end, dim);
 		if (dim->values[ij.i][ij.j + 1] || dim->values[ij.i][ij.j])
-			draw_line(image, pos, COLOR2);
+			draw_line(image, &pos, COLOR2);
 		else
-			draw_line(image, pos, COLOR1);
+			draw_line(image, &pos, COLOR1);
 	}
 }
 
@@ -60,11 +60,11 @@ void	draw_vertical(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 	{
 		pos.x_end = (ij.j * CELLS);
 		pos.y_end = ((ij.i + 1) * CELLS);
-		isometric_projection(&pos.x_end, &pos.y_end, dim->values[ij.i
-			+ 1][ij.j], dim);
+		pos.z_end = dim->values[ij.i + 1][ij.j];
+		isometric_projection(&pos.x_end, &pos.y_end, pos.z_end, dim);
 		if (dim->values[ij.i + 1][ij.j] || dim->values[ij.i][ij.j])
-			draw_line(image, pos, COLOR2);
+			draw_line(image, &pos, COLOR2);
 		else
-			draw_line(image, pos, COLOR1);
+			draw_line(image, &pos, COLOR1);
 	}
 }
