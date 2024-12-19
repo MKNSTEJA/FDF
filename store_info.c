@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:47:19 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/18 21:48:50 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/19 16:06:05 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ t_dim	*setup_dim(int fd, char *file)
 	while (height < dim->height)
 	{
 		dim->values[height] = malloc(sizeof(int) * dim->width);
-		if (!dim->values[height++])
+		if (!dim->values[height])
 			return (NULL);
+		height++;
 	}
 	return (initialise_values(fd, file, dim), dim);
 }
@@ -81,6 +82,8 @@ void	initialise_values(int fd, char *file, t_dim *dim)
 
 	close(fd);
 	i = 0;
+	dim->max_z = INT_MIN;
+	dim->min_z = INT_MAX;
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
@@ -106,10 +109,12 @@ void	parse_line(char *line, t_dim *dim, int i)
 				&& j < dim->width))
 		{
 			dim->values[i][j] = ft_atoi(&line[k]);
-			if(line[k+1] == ',')
-				dim->g_color[i][j] = ft_atoi_base(&line[k+2]);
-			else
-				dim->g_color[i][j] = 0;
+			if (dim->values[i][j] > dim->max_z)
+			{
+				dim->max_z = dim->values[i][j];
+			}
+			if (dim->values[i][j] < dim->min_z)
+				dim->min_z = dim->values[i][j];
 			while (line[k] && line[k] != ' ' && line[k] != '\n')
 				k++;
 			j++;
