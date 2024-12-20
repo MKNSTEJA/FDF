@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:51:51 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/11/29 17:56:00 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 06:15:59 by mknsteja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 int		find_step(int dx, int dy);
 
-void	dda_algorithm(t_line *pos, t_algo *dda)
+void	dda_algorithm(t_line *pos, t_algo *dda, t_line *line)
 {
+	double total_steps;
+    double current_steps;
+	
 	if (dda->xacc >= dda->step)
 	{
 		if (pos->x_end > pos->x_start)
@@ -32,6 +35,9 @@ void	dda_algorithm(t_line *pos, t_algo *dda)
 			(pos->y_start)--;
 		dda->yacc -= dda->step;
 	}
+	total_steps = sqrt(pow(line->x_end - line->x_start, 2) + pow(line->y_end - line->y_start, 2));
+	current_steps = sqrt(pow(line->x_end - pos->x_start, 2) + pow(line->y_end - pos->y_start, 2));
+    pos->z_start = line->z_start + (line->z_end - line->z_start) * (current_steps / total_steps);
 }
 
 int	find_step(int dx, int dy)

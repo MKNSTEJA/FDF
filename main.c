@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:10:23 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/19 16:07:12 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:39:34 by mknsteja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,7 @@ int	main(int argc, char **argv)
 {
 	int		graph_ad;
 	t_dim	*dim;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	if (argc != 2)
 		return (-1);
 	graph_ad = open(argv[1], O_RDONLY);

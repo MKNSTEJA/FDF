@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/19 16:17:21 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 06:05:57 by mknsteja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+#define _USE_MATH_DEFINES
 
 # include "./MLX42/include/MLX42/MLX42.h"
 # include "./ft_printf/ft_printf.h"
@@ -50,8 +51,9 @@ typedef struct s_line
 	int		y_start;
 	int		x_end;
 	int		y_end;
-	int		z_start;
-	int		z_end;
+	double		z_start;
+	double		z_end;
+	int		max_z;
 }			t_line;
 
 typedef struct s_dimensions
@@ -80,7 +82,7 @@ typedef struct s_color
 t_dim		*setup_dim(int fd, char *file);
 void		initialize_window(t_dim *dim);
 void		draw_line(mlx_image_t *image, t_line *pos, uint32_t color);
-void		dda_algorithm(t_line *pos, t_algo *dda);
+void		dda_algorithm(t_line *pos, t_algo *dda, t_line *line);
 void		draw_fdf(mlx_image_t *image, t_dim *dim);
 int			find_step(int dx, int dy);
 void		isometric_projection(int *x, int *y, int z, t_dim *dim);
