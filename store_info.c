@@ -6,14 +6,14 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:47:19 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/19 16:06:05 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:49:55 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 int		count_columns(char *line);
-void	initialise_values(int fd, char *file, t_dim *dim);
+int		initialise_values(int fd, char *file, t_dim *dim);
 void	parse_line(char *line, t_dim *dim, int i);
 void	count_rows(char *line, t_dim *dim, int fd);
 
@@ -41,7 +41,9 @@ t_dim	*setup_dim(int fd, char *file)
 			return (NULL);
 		height++;
 	}
-	return (initialise_values(fd, file, dim), dim);
+	if (initialise_values(fd, file, dim) == -1)
+		return (NULL);
+	return (dim);
 }
 
 void	count_rows(char *line, t_dim *dim, int fd)
@@ -75,7 +77,7 @@ int	count_columns(char *line)
 	return (count);
 }
 
-void	initialise_values(int fd, char *file, t_dim *dim)
+int	initialise_values(int fd, char *file, t_dim *dim)
 {
 	char	*line;
 	int		i;
@@ -85,6 +87,8 @@ void	initialise_values(int fd, char *file, t_dim *dim)
 	dim->max_z = INT_MIN;
 	dim->min_z = INT_MAX;
 	fd = open(file, O_RDONLY);
+	if (!fd)
+		return (-1);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -94,6 +98,7 @@ void	initialise_values(int fd, char *file, t_dim *dim)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	return (0);
 }
 
 void	parse_line(char *line, t_dim *dim, int i)

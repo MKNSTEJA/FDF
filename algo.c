@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 14:51:51 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 06:15:59 by mknsteja         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:52:23 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ int		find_step(int dx, int dy);
 
 void	dda_algorithm(t_line *pos, t_algo *dda, t_line *line)
 {
-	double total_steps;
-  double current_steps;
-	double ratio;
+	double	total_steps;
+	double	current_steps;
 
 	if (dda->xacc >= dda->step)
 	{
@@ -36,11 +35,12 @@ void	dda_algorithm(t_line *pos, t_algo *dda, t_line *line)
 			(pos->y_start)--;
 		dda->yacc -= dda->step;
 	}
-	total_steps = sqrt(pow(line->x_end - line->x_start, 2) + pow(line->y_end - line->y_start, 2));
-	current_steps = sqrt(pow(line->x_end - pos->x_start, 2) + pow(line->y_end - pos->y_start, 2));
-  ratio = line->z_start + (line->z_end - line->z_start) * (current_steps / total_steps);
-  pos->z_start = ratio;
-  // pos->z_start = line->z_start + ((line->z_end - line->z_start) / line->max_z);
+	total_steps = sqrt(pow(line->x_end - line->x_start, 2) + pow(line->y_end
+				- line->y_start, 2));
+	current_steps = sqrt(pow(pos->x_start - line->x_start, 2) + pow(pos->y_start
+				- line->y_start, 2));
+	pos->z_start = line->z_start + (line->z_end - line->z_start)
+		* (current_steps / total_steps);
 }
 
 int	find_step(int dx, int dy)

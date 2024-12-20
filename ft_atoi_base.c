@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 19:51:35 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/18 19:53:40 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:52:51 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ uint32_t	ft_atoi_base(const char *str)
 		else if (*str >= 'A' && *str <= 'F')
 			result += *str - 'A' + 10;
 		else
-			return (0); // Invalid character for hexadecimal
+			return (0);
 		str++;
 	}
 	return (result);

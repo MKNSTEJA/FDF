@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 06:05:57 by mknsteja         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:36:11 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-#define _USE_MATH_DEFINES
+# define _USE_MATH_DEFINES
 
 # include "./MLX42/include/MLX42/MLX42.h"
 # include "./ft_printf/ft_printf.h"
@@ -23,8 +23,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define WIDTH 1500
-# define HEIGHT 1000
+# define WIDTH 1700
+# define HEIGHT 1700
 # define CELLS 35
 # define COLOR1 0xE0E0E055
 # define COLOR2 0xFF7619FF
@@ -51,8 +51,8 @@ typedef struct s_line
 	int		y_start;
 	int		x_end;
 	int		y_end;
-	double		z_start;
-	double		z_end;
+	double	z_start;
+	double	z_end;
 	int		max_z;
 }			t_line;
 

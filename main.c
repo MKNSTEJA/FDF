@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:10:23 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/19 17:39:34 by mknsteja         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:01:02 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	free_all(t_dim *dim);
+static void	free_all(t_dim **dim);
 void		print_fdf(t_dim *dim);
 
 int	main(int argc, char **argv)
@@ -29,29 +29,40 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	dim = setup_dim(graph_ad, argv[1]);
-	// print_fdf(dim);
 	if (!dim)
 		return (-1);
+	system("leaks fdf");
 	initialize_window(dim);
-	free_all(dim);
+	free_all(&dim);
 	close(graph_ad);
 }
 
-static void	free_all(t_dim *dim)
+static void	free_all(t_dim **dim)
 {
 	int	i;
 
 	i = 0;
-	while (i < dim->height)
+	if (!dim || !*dim)
+		return ;
+	while (i < (*dim)->height)
 	{
-		if (dim->values[i])
+		if ((*dim)->values[i] && (dim))
 		{
-			free(dim->values[i]);
+			free((*dim)->values[i]);
+			(*dim)->values[i] = NULL;
 		}
 		i++;
 	}
-	if (dim)
-		free(dim);
+	if ((*dim)->values)
+	{
+		free((*dim)->values);
+		(*dim)->values = NULL;
+	}
+	if (*dim)
+	{
+		free(*dim);
+		*dim = NULL;
+	}
 }
 
 void	print_fdf(t_dim *dim)

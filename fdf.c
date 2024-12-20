@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mknsteja <mknsteja@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:10:12 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 06:07:12 by mknsteja         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:35:50 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,13 @@ void	draw_vertical(mlx_image_t *image, t_dim *dim, t_ij ij, t_line pos)
 
 int	calc_cells(t_dim *dim)
 {
-	int	h_cells;
-	int	w_cells;
-
-	h_cells = (HEIGHT) / (dim->height * 2);
-	w_cells = (WIDTH) / (dim->width * 2);
-	if (h_cells > w_cells && w_cells != 0)
-		return (w_cells);
-	else if (w_cells > h_cells && h_cells != 0)
-		return (h_cells);
-	return (2);
+	if (dim->height >= 400)
+		return (2);
+	else if (dim->height >= 100)
+		return (5);
+	else if (dim->height >= 50)
+		return (10);
+	else if (dim->height >= 25)
+		return (20);
+	return (40);
 }
