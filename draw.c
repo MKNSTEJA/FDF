@@ -68,17 +68,23 @@ void	isometric_projection(int *x, int *y, int z, t_dim *dim)
 	*x = ((pre_x - pre_y) * cos(M_PI / 6));
 	*y = ((pre_x + pre_y) * sin(M_PI / 6)) - (z_height * z);
 	// printf("%d and %d\n", offset_x, offset_y);
-	*x += offset_x + 180;
-	*y += offset_y + 150;
+  if(z_height != 10)
+  {
+    *x += offset_x + 500;
+    *y += offset_y + 150;
+  }
+  else 
+  {
+	  *x += offset_x + 180;
+	  *y += offset_y + 20;
+  }
 }
 
-double	calc_ratio(t_line *pos, t_line *line, t_algo *dda, char c)
+double	calc_ratio(t_line *pos, t_line *line, t_algo *dda)
 {
 	double	ratio;
 	// double	total_steps;
 	// double	current_steps;
-
-	(void)c;
 	(void)dda;
 	// total_steps = sqrt(pow(line->x_end - line->x_start, 2) + pow(line->y_end
 	// 			- line->y_start, 2));
@@ -99,16 +105,18 @@ uint32_t	gradient_colour(t_line *pos, t_algo *dda, t_line *line,
 	t_color			end;
 	t_color			exact;
 	// uint32_t		final;
-
+  (void)dda;
 	if (color == COLOR1)
 		return (COLOR1);
 	// if ((line->z_start == line->z_end))
-	// 	return (final);
-	ratio = calc_ratio(pos, line, dda, 'y');
+// 	return (final);
+	ratio = pos->z_start / (double)line->max_z;
 	// if(pos->z_start == line->z_end)
+    // ratio = 0;
 	// {
-	printf("%lf \n", ratio);
+    // printf("%lf \n", ratio);
 	// }
+  // ratio = 0.012;
 	start.r = (0xFFFF00 >> 16) & 0xFF;
 	start.g = (0xFFFF00 >> 8) & 0xFF;
 	start.b = 0xFFFF00 & 0xFF;

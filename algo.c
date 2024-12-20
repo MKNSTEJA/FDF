@@ -17,8 +17,9 @@ int		find_step(int dx, int dy);
 void	dda_algorithm(t_line *pos, t_algo *dda, t_line *line)
 {
 	double total_steps;
-    double current_steps;
-	
+  double current_steps;
+	double ratio;
+
 	if (dda->xacc >= dda->step)
 	{
 		if (pos->x_end > pos->x_start)
@@ -37,7 +38,9 @@ void	dda_algorithm(t_line *pos, t_algo *dda, t_line *line)
 	}
 	total_steps = sqrt(pow(line->x_end - line->x_start, 2) + pow(line->y_end - line->y_start, 2));
 	current_steps = sqrt(pow(line->x_end - pos->x_start, 2) + pow(line->y_end - pos->y_start, 2));
-    pos->z_start = line->z_start + (line->z_end - line->z_start) * (current_steps / total_steps);
+  ratio = line->z_start + (line->z_end - line->z_start) * (current_steps / total_steps);
+  pos->z_start = ratio;
+  // pos->z_start = line->z_start + ((line->z_end - line->z_start) / line->max_z);
 }
 
 int	find_step(int dx, int dy)
