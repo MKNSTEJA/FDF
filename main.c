@@ -6,13 +6,12 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:10:23 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 16:01:02 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:17:16 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	free_all(t_dim **dim);
 void		print_fdf(t_dim *dim);
 
 int	main(int argc, char **argv)
@@ -31,13 +30,13 @@ int	main(int argc, char **argv)
 	dim = setup_dim(graph_ad, argv[1]);
 	if (!dim)
 		return (-1);
-	system("leaks fdf");
 	initialize_window(dim);
+	printf("goes here\n");
 	free_all(&dim);
 	close(graph_ad);
 }
 
-static void	free_all(t_dim **dim)
+void	free_all(t_dim **dim)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:47:19 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 16:18:37 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:18:10 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_dim	*setup_dim(int fd, char *file)
 
 	dim = malloc(sizeof(t_dim));
 	if (!dim)
-		return (NULL);
+		return (free_all(dim), NULL);
 	line = get_next_line(fd);
 	dim->height = 0;
 	height = 0;
@@ -33,16 +33,16 @@ t_dim	*setup_dim(int fd, char *file)
 	count_rows(line, dim, fd);
 	dim->values = malloc(sizeof(int *) * dim->height);
 	if (!dim->values)
-		return (NULL);
+		return (free_all(dim), NULL);
 	while (height < dim->height)
 	{
 		dim->values[height] = malloc(sizeof(int) * dim->width);
 		if (!dim->values[height])
-			return (NULL);
+			return (free_all(dim), NULL);
 		height++;
 	}
 	if (initialise_values(fd, file, dim) == -1)
-		return (NULL);
+		return (free_all(dim), NULL);
 	return (dim);
 }
 

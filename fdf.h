@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:04:13 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 15:36:11 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 17:17:11 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,6 @@ void		isometric_projection(int *x, int *y, int z, t_dim *dim);
 void		draw_pixel(mlx_image_t *image, uint32_t x, uint32_t y,
 				uint32_t color);
 uint32_t	ft_atoi_base(const char *str);
+void	free_all(t_dim **dim);
 
 #endif
