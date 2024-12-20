@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:47:19 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 15:49:55 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:18:37 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	count_rows(char *line, t_dim *dim, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if(line)
+		free(line);
 }
 
 int	count_columns(char *line)
@@ -63,7 +65,7 @@ int	count_columns(char *line)
 
 	i = 0;
 	count = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (line[i] >= '0' && line[i] <= '9')
 		{
@@ -90,6 +92,8 @@ int	initialise_values(int fd, char *file, t_dim *dim)
 	if (!fd)
 		return (-1);
 	line = get_next_line(fd);
+	if (!line)
+		return (-1);
 	while (line)
 	{
 		parse_line(line, dim, i);
@@ -97,6 +101,8 @@ int	initialise_values(int fd, char *file, t_dim *dim)
 		i++;
 		line = get_next_line(fd);
 	}
+	if(line)
+		free(line);
 	close(fd);
 	return (0);
 }
@@ -108,7 +114,7 @@ void	parse_line(char *line, t_dim *dim, int i)
 
 	k = 0;
 	j = 0;
-	while (line[k])
+	while (line && line[k])
 	{
 		if ((line[k] >= '0' && line[k] <= '9') && (i < dim->height
 				&& j < dim->width))

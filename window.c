@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:26:34 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/18 14:45:18 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 16:11:41 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	initialize_window(t_dim *dim)
 		exit(-1);
 	image = mlx_new_image(mlx, WIDTH, HEIGHT);
 	if (!image)
+	{
+		mlx_terminate(mlx);
 		exit(-1);
+	}
 	mlx_image_to_window(mlx, image, 0, 0);
 	paint_black(image);
 	draw_fdf(image, dim);
