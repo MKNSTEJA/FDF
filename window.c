@@ -6,7 +6,7 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 17:26:34 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/20 17:06:56 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/20 18:20:32 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	initialize_window(t_dim *dim)
 	draw_fdf(image, dim);
 	mlx_key_hook(mlx, handle_keypress, mlx);
 	mlx_loop(mlx);
-	printf("goes here\n");
 	mlx_terminate(mlx);
 	return ;
 }
