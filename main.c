@@ -6,13 +6,11 @@
 /*   By: kmummadi <kmummadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 13:10:23 by kmummadi          #+#    #+#             */
-/*   Updated: 2024/12/21 11:29:45 by kmummadi         ###   ########.fr       */
+/*   Updated: 2024/12/21 11:43:12 by kmummadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	print_fdf(t_dim *dim);
 
 int	main(int argc, char **argv)
 {
