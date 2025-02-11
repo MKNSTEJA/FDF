@@ -20,6 +20,7 @@
 ## Introduction
 
 Ever felt like drawing in MS Paint was too boring? Ever felt like making PowerPoint presentations is too mainstream? Ever felt like ASCII art isn't chaotic enough? Try wireframes then! Build your own Minecraft terrains with this project!
+
 **FDF** is a graphical program that takes a file describing a 3D terrain and represents it in a 2D isometric projection. This project is part of the 42 School curriculum and aims to deepen your understanding of computer graphics, file parsing, and the mathematics behind 3D projections.
 
 ---
