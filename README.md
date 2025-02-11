@@ -29,9 +29,9 @@ Ever felt like drawing in MS Paint was too boring? Ever felt like making PowerPo
 
 ✅ **3D to 2D Projection** – Converts 3D wireframe models into 2D isometric views.  
 
-✅ **Interactive Controls** – Rotate, zoom, and adjust the view dynamically.  
+✅ **Interactive Controls** – Rotate, zoom, and adjust the view dynamically.  (not released yet...)
 
-✅ **Customizable Colors** – Apply different color schemes to enhance visualization.  
+✅ **Customizable Colors** – Apply different color schemes to enhance visualization.  (not released yet...)
 
 ✅ **Lightweight and Efficient** – Optimized for performance with a minimal footprint.
 
