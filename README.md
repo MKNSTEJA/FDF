@@ -71,7 +71,7 @@ Before installing and running FDF, ensure that you have the necessary dependenci
 - **X Server:** Install an X Server like [VcXsrv](https://sourceforge.net/projects/vcxsrv/) to handle graphical display.
 - **GLFW and CMake:** Follow the Linux instructions above within your WSL2 environment.
 
-For detailed installation instructions about the dependencies, I highly recommend you to refer to the [MLX42 Installation Guide](https://github.com/codam-coding-college/MLX42#installation-).
+For detailed installation instructions about the dependencies, I highly recommend you to refer to the [MLX42 Installation Guide](https://github.com/codam-coding-college/MLX42?tab=readme-ov-file#installation-%EF%B8%8F).
 
 ---
 
